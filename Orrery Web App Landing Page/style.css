@@ -1,0 +1,241 @@
+/* Resetting margin, padding, and ensuring consistent box-sizing across elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Setting HTML and body to occupy the full viewport, and hiding any overflow */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Styling for the main section with a full-screen background image */
+section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url(bg2.jpg) no-repeat center center fixed; /* Full-screen, centered, and fixed background */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+  background-position: center;
+  background-repeat: no-repeat; /* Prevents repeating of the image */
+  animation: animateBg 50s linear infinite; /* Slowly animates background scaling */
+}
+
+/* Animation to scale the background image between its original size and 120% */
+@keyframes animateBg {
+  0%,
+  100% {
+    transform: scale(1); /* Default scale */
+  }
+  50% {
+    transform: scale(1.2); /* Enlarges background at midpoint of animation */
+  }
+}
+
+/* Styling for falling stars */
+span.fall {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  width: 2px; /* Star width */
+  height: 2px; /* Star height */
+  background: #fff; /* Star color */
+  border-radius: 50%; /* Makes the star circular */
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.8),
+    /* Inner glow */ 0 0 3px rgba(255, 255, 255, 0.6),
+    /* Medium glow */ 0 0 6px rgba(255, 255, 255, 0.4); /* Outer glow */
+  animation: animate 3s linear infinite; /* Animate falling stars */
+}
+
+/* Styling for the star trail (a long gradient line following the star) */
+span.fall::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    #fff,
+    transparent
+  ); /* Gradually fades out */
+}
+
+/* Animation for the star falling and disappearing */
+@keyframes animate {
+  0% {
+    transform: rotate(315deg) translateX(0); /* Star at the starting point */
+  }
+  70% {
+    opacity: 1; /* Star is fully visible */
+  }
+  100% {
+    transform: rotate(315deg) translateX(-1000px); /* Moves star off-screen */
+    opacity: 0; /* Fades out at the end */
+  }
+}
+
+/* Individual stars with different delays and durations to make them fall randomly */
+span.fall:nth-child(1) {
+  top: 0;
+  right: 80px;
+  animation-delay: 3.2s;
+  animation-duration: 3s;
+}
+
+/* Additional star positions with unique delays and durations for randomness */
+span.fall:nth-child(2) {
+  /* Star 2 */
+  top: 0;
+  right: 80px;
+  animation-delay: 3.2s;
+  animation-duration: 3s;
+}
+span.fall:nth-child(3) {
+  /* Star 3 */
+  top: 80px;
+  right: 0px;
+  animation-delay: 0.4s;
+  animation-duration: 2s;
+}
+/* Continue similar pattern for more stars */
+span.fall:nth-child(4) {
+  /* Star 4 */
+  top: 0px;
+  right: 100px;
+  animation-delay: 0.6s;
+  animation-duration: 1.5s;
+}
+/* ... */
+
+/* Styling for the content container */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the content */
+  text-align: center;
+  z-index: 1; /* Ensures it is placed above other elements */
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 3s forwards; /* Fade-in effect over 3 seconds */
+}
+
+/* Heading styling */
+h2 {
+  padding: 5px;
+  font-size: 5rem; /* Large font size */
+  margin-bottom: 30px;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 255, 255, 0.8),
+    rgba(0, 0, 255, 0.8)
+  );
+  -webkit-background-clip: text; /* Clipping background to text */
+  background-clip: text; /* Clipping background to text */
+  color: transparent; /* Makes text transparent to show the gradient */
+  text-shadow: 0 0 10px rgba(0, 255, 255, 1), 0 0 20px; /* Glowing effect */
+}
+
+/* Animation for text glow */
+@keyframes cosmicGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 0, 255, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 0, 255, 1);
+  }
+}
+
+/* Animation for fading in the content */
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /* Invisible at start */
+  }
+  100% {
+    opacity: 1; /* Fully visible */
+  }
+}
+
+/* Animation for shifting gradient background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Button styling */
+.button1 {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  color: #fff;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+/* Icon wrapper for the button */
+.button1__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%; /* Circular shape */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* Hover effect for button background and text color */
+.button1:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+}
+
+/* Hover effect for button icon */
+.button1:hover .button1__icon-wrapper {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #000000;
+}
+
+/* Transition for icon animation */
+.button1__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.button1:hover .button1__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button1:hover .button1__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
